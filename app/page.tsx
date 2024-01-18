@@ -47,7 +47,7 @@ export default function Index() {
 
   return (
     <PageLayout>
-      <div className="animate-in flex-1 flex flex-col gap-20 opacity-0 max-w-4xl px-3">
+      <div className="animate-in flex-1 flex flex-col gap-10 opacity-0 max-w-4xl px-3">
         <div className="flex-1 flex flex-col gap-6 p-2">
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black">
             Keep a journal of your daily{" "}
@@ -75,9 +75,8 @@ export default function Index() {
       <div className="animate-in flex-1 flex flex-col gap-20 opacity-0 max-w-4xl px-3">
         <div className="flex-1 flex flex-col gap-6 p-2">
           <div className="flex-1 flex flex-col justify-center items-center gap-2 animate-in">
-            <div className="p-4 rounded-md border-2 border-foreground/10">
-              <h1 className="font-bold text-xl text-app-green">Why and How?</h1>
-              <div className="flex justify-center items-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="p-4 rounded-md border-2 border-foreground/10">
                 <p className="text-base font-medium m-2">
                   <span className="inline-block align-middle mr-2">
                     <MoodeeIcon width="15" height="15"></MoodeeIcon>
@@ -91,7 +90,7 @@ export default function Index() {
                   your current mood, and log out – no additional steps required.
                 </p>
               </div>
-              <div className="m-2">
+              <div className="p-4 rounded-md border-2 border-foreground/10">
                 <ul>
                   <li className="flex items-center gap-2 py-1">
                     <div className="w-8 h-8 bg-app-dark-green rounded-sm"></div>
@@ -115,12 +114,7 @@ export default function Index() {
                   </li>
                 </ul>
               </div>
-            </div>
-            <div className="p-4 rounded-md border-2 border-foreground/10">
-              <h1 className="font-bold text-xl flex text-app-orange">
-                Features.
-              </h1>
-              <div className="flex justify-center items-center">
+              <div className="p-4 rounded-md border-2 border-foreground/10">
                 <p className="text-base font-medium m-2">
                   <span className="inline-block align-middle mr-2">
                     <MoodeeIcon width="15" height="15"></MoodeeIcon>
@@ -133,10 +127,7 @@ export default function Index() {
                   visualisations.
                 </p>
               </div>
-            </div>
-            <div className="p-4 rounded-md border-2 border-foreground/10">
-              <h1 className="font-bold text-xl flex text-app-red">Privacy.</h1>
-              <div className="flex justify-center items-center">
+              <div className="p-4 rounded-md border-2 border-foreground/10">
                 <p className="text-base font-medium m-2">
                   <span className="inline-block align-middle mr-2">
                     <MoodeeIcon width="15" height="15"></MoodeeIcon>
@@ -164,4 +155,91 @@ export default function Index() {
       </div>
     </PageLayout>
   );
+}
+
+{
+  /* <div className="p-4 rounded-md border-2 border-foreground/10">
+<h1 className="font-bold text-xl text-app-green">Why and How?</h1>
+<div className="flex justify-center items-center">
+  <p className="text-base font-medium m-2">
+    <span className="inline-block align-middle mr-2">
+      <MoodeeIcon width="15" height="15"></MoodeeIcon>
+    </span>
+    Tracking your mood has been demonstrated as an effective
+    practice for enhancing self-awareness and pinpointing
+    potential triggers that could impact your mental well-being.
+    Embarking on a new routine can often be challenging, and
+    recognizing this, Moodee is designed with an exceptionally
+    accessible entry point. Just sign in, effortlessly express
+    your current mood, and log out – no additional steps required.
+  </p>
+</div>
+<div className="m-2">
+  <ul>
+    <li className="flex items-center gap-2 py-1">
+      <div className="w-8 h-8 bg-app-dark-green rounded-sm"></div>
+      <p>Today was a great day. </p>
+    </li>
+    <li className="flex items-center gap-2 py-1">
+      <div className="w-8 h-8 bg-app-green rounded-sm"></div>
+      <p>Today was a good day.</p>
+    </li>
+    <li className="flex items-center gap-2 py-1">
+      <div className="w-8 h-8 bg-app-yellow rounded-sm"></div>
+      <p>Today was an average day.</p>
+    </li>
+    <li className="flex items-center gap-2 py-1">
+      <div className="w-8 h-8 bg-app-orange rounded-sm"></div>
+      <p>Today was a bad day.</p>
+    </li>
+    <li className="flex items-center gap-2 py-1">
+      <div className="w-8 h-8 bg-app-red rounded-sm"></div>
+      <p>Today was an awful day.</p>
+    </li>
+  </ul>
+</div>
+</div>
+<div className="p-4 rounded-md border-2 border-foreground/10">
+<h1 className="font-bold text-xl flex text-app-orange">
+  Features.
+</h1>
+<div className="flex justify-center items-center">
+  <p className="text-base font-medium m-2">
+    <span className="inline-block align-middle mr-2">
+      <MoodeeIcon width="15" height="15"></MoodeeIcon>
+    </span>
+    Moodee is a simple service, all you need to do is to try to
+    log your mood daily. To encourage your new routine, Moodee
+    creates a map of your mood that you can watch grow as your log
+    more days. This data is exportable to CSV format so that you
+    can play with it on your own and create your own
+    visualisations.
+  </p>
+</div>
+</div>
+<div className="p-4 rounded-md border-2 border-foreground/10">
+<h1 className="font-bold text-xl flex text-app-red">Privacy.</h1>
+<div className="flex justify-center items-center">
+  <p className="text-base font-medium m-2">
+    <span className="inline-block align-middle mr-2">
+      <MoodeeIcon width="15" height="15"></MoodeeIcon>
+    </span>
+    Your data is your own, and Moodee keeps it confidential and
+    does not pass it on to other actors. Moodee keeps your data in
+    compliance with <span>SOC 2</span> and <span>HIPAA</span>, as
+    well as encrypting all your data at rest with{" "}
+    <span>AES-256</span> and in transit data with <span>TLS</span>
+    . Additionally, none of your personal information (
+    <span className="font-light">i.e., e-mail, name etc</span>) is
+    permanently stored. To delete data related to you, visit your
+    journal and press{" "}
+    <span className="text-app-red">delete account</span>.<br></br>
+    <br></br>Read more about Moodee's storage provider{" "}
+    <span className="text-app-dark-green underline">
+      <Link href={"https://supabase.com/security"}>here</Link>
+    </span>
+    .
+  </p>
+</div>
+</div> */
 }
