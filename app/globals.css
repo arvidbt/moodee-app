@@ -26,6 +26,12 @@
   }
 }
 
+@layer components {
+  .btn-primary {
+    @apply py-2 px-3 rounded-md no-underline bg-btn-background hover:bg-btn-background-hover font-semibold;
+  }
+}
+
 .animate-in {
   animation: animateIn 0.3s ease 0.15s both;
 }
@@ -33,10 +39,40 @@
 @keyframes animateIn {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+
+@keyframes animateInGrid {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.grid-animate-in {
+  animation: animateInGrid 0.3s ease 0.15s both;
+}
+
+.gradient-text {
+  background: linear-gradient(45deg, #038C65, #78D980, #EEEA8A, #FFB661, #FF7F62);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradientShift 15s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
