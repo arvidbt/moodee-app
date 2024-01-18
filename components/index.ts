@@ -4,6 +4,7 @@ import PageLayout from "./PageLayout";
 import PageNav from "./PageNav";
 import ReactQueryClientProvider from "./ReactQueryClientProvider";
 import Button from "./generics/Button";
+import HomeScreen from "./HomeScreen";
 export {
   Button,
   MoodeeIcon,
@@ -11,4 +12,5 @@ export {
   PageLayout,
   PageNav,
   ReactQueryClientProvider,
+  HomeScreen,
 };
