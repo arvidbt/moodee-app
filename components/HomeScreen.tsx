@@ -2,52 +2,55 @@
 
 import { UUID } from "crypto";
 import { JournalGrid } from "./JournalGrid";
-import { useEffect, useState } from "react";
-import { useSupabaseClient } from "@/lib/supabase/client";
-import { useQuery } from "@supabase-cache-helpers/postgrest-react-query";
+import { useQuery } from "@tanstack/react-query";
+import DisplayError from "./DisplayError";
+import SelectMood from "./SelectMood";
 import LoadingSpinner from "./LoadingSpinner";
-import TemporaryName from "./TemporaryName";
+import {
+  getAuthenticatedUser,
+  getLatestEntryByUser,
+} from "@/lib/server/actions";
 
-interface Props {
-  user_id: UUID;
-}
-
-export default function HomeScreen({ user_id }: Props) {
-  const [userLoggedAlready, setUserLoggedAlready] = useState(true);
-  const supabase = useSupabaseClient();
-  const { data } = useQuery(
-    supabase
-      .from("logged_days")
-      .select("created_at")
-      .eq("user_id", user_id)
-      .order("day_id", { ascending: false })
-      .limit(1)
-      .single(),
-    {} // Put configs here.
-  );
-
-  function isCreatedToday(created_at: string) {
+export default function HomeScreen() {
+  function hasUserLoggedAlready(created_at: string) {
     const createdAtDate = new Date(created_at);
     const currentDate = new Date();
 
     const createdAtDateString = createdAtDate.toLocaleDateString("en-US");
     const currentDateString = currentDate.toLocaleDateString("en-US");
-    setUserLoggedAlready(createdAtDateString === currentDateString);
+    return createdAtDateString === currentDateString;
   }
 
-  useEffect(() => {
-    if (data) {
-      isCreatedToday(data.created_at);
-    }
-  }, [data]);
+  const { data: user, error } = useQuery({
+    queryKey: ["authenticated_user"],
+    queryFn: getAuthenticatedUser,
+  });
+
+  const user_id = user?.id;
+
+  const { data, isLoading } = useQuery({
+    queryKey: ["get_latest_entry", user?.id],
+    queryFn: () => getLatestEntryByUser(user?.id as string),
+    enabled: !!user?.id,
+  });
+
+  if (error) {
+    return (
+      <DisplayError error_message={error.message} error_name={error.name} />
+    );
+  }
+
+  if (user_id === undefined) {
+    return <div>Could not load user...</div>;
+  }
 
   return (
     <div>
-      {/* {isLoading && <LoadingSpinner />} */}
-      {userLoggedAlready ? (
-        <JournalGrid user_id={user_id} />
+      {isLoading && <LoadingSpinner />}
+      {hasUserLoggedAlready(data?.created_at) && user_id ? (
+        <div>{!isLoading && <JournalGrid user_id={user_id as UUID} />}</div>
       ) : (
-        <TemporaryName />
+        <div>{!isLoading && <SelectMood user_id={user_id} />}</div>
       )}
     </div>
   );
