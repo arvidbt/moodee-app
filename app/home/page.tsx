@@ -1,4 +1,4 @@
-import { HomeScreen, PageLayout } from "@/components";
+import { HomeLandingPage, PageLayout } from "@/components";
 import { getAuthenticatedUser } from "@/lib/server/actions/get-authenticated-user";
 import {
   dehydrate,
@@ -19,7 +19,7 @@ export default async function Home() {
         <div className="flex-1 flex flex-col gap-2">
           <div className="flex-1 flex flex-col justify-center items-center animate-in">
             <HydrationBoundary state={dehydrate(queryClient)}>
-              <HomeScreen />
+              <HomeLandingPage />
             </HydrationBoundary>
           </div>
         </div>

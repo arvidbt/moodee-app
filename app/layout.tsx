@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
 import "./globals.css";
-import { QueryProvider } from "@/components";
+import { PageFooter, PageNav, QueryProvider } from "@/components";
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -23,7 +23,9 @@ export default function RootLayout({
       <html lang="en" className={GeistSans.className}>
         <body className="bg-background text-foreground">
           <main className="min-h-screen flex flex-col items-center">
+            <PageNav />
             {children}
+            <PageFooter />
           </main>
         </body>
       </html>

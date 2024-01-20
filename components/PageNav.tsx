@@ -4,6 +4,7 @@ import MoodeeIcon from "./ModeeIcon";
 import { usePathname } from "next/navigation";
 import SignInButton from "./SignInButton";
 import SignOutButton from "./SignOutButton";
+import Link from "next/link";
 
 export default function PageNav() {
   return (
@@ -14,7 +15,7 @@ export default function PageNav() {
             <span className="inline-block align-middle mr-2">
               <MoodeeIcon width="20" height="20" />
             </span>
-            Moodee
+            <Link href={"/home"}>Moodee</Link>
           </p>
         </div>
         {usePathname() === "/home" ? (

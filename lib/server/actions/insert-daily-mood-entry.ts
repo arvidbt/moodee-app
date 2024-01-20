@@ -2,11 +2,12 @@
 
 import { revalidatePath } from "next/cache";
 import { useSupabaseServer } from "@/lib/supabase/server";
+import { redirect } from "next/navigation";
 
 export async function insertDailyMoodEntry(user_id: string, mood: number) {
   const supabase = useSupabaseServer();
 
-  const data = await supabase
+  await supabase
     .from("logged_days")
     .insert([
       {
@@ -18,5 +19,4 @@ export async function insertDailyMoodEntry(user_id: string, mood: number) {
     ])
     .select();
   revalidatePath("/home");
-  return data;
 }

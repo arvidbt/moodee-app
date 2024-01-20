@@ -15,6 +15,10 @@ export default function JournalGridItem({ mood, index }: MoodItemProps) {
       style={{
         animationDelay: `${getAnimationDelay(index)}s`,
       }}
-    ></div>
+    >
+      {/* <div className="relative w-full">
+        <div className="absolute top-0 right-0">03</div>
+      </div> */}
+    </div>
   );
 }

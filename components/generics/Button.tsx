@@ -1,6 +1,7 @@
 "use client";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
+import { MouseEventHandler } from "react";
 
 interface ButtonProps {
   title: string;
@@ -10,6 +11,7 @@ interface ButtonProps {
   disabled?: boolean;
   children?: React.ReactNode;
   customStyling?: string;
+  onClick?: MouseEventHandler<HTMLButtonElement> | undefined;
 }
 
 export default function Button({
@@ -20,6 +22,7 @@ export default function Button({
   type,
   children,
   customStyling,
+  onClick,
 }: ButtonProps) {
   function isActive() {
     if (!urlName) {
@@ -32,6 +35,7 @@ export default function Button({
     <button
       type={type ? type : "submit"}
       disabled={disabled ? true : false}
+      onClick={onClick}
       className={cn(
         "py-2 px-3 rounded-md no-underline bg-btn-background hover:bg-btn-background-hover font-semibold w-full select-none",
         isActive() &&
