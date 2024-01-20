@@ -40,7 +40,7 @@ export default function Button({
       )}
     >
       {title}
-      {children && children}
+      {children}
     </button>
   );
 }

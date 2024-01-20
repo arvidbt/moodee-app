@@ -1,10 +1,13 @@
 "use client";
 
-import { Button } from "@/components";
 import { getURL } from "../utils";
 import { useSupabaseClient } from "../supabase/client";
 
-export function SignInForm() {
+interface Props {
+  children: React.ReactNode;
+}
+
+export function SignInForm({ children }: Props) {
   function loginWithOAuth() {
     const supabase = useSupabaseClient();
     const defaultUrl = getURL();
@@ -17,12 +20,5 @@ export function SignInForm() {
     });
   }
 
-  return (
-    <form action={loginWithOAuth}>
-      <Button
-        title="Sign in with Google"
-        customStyling="w-full py-3 px-12"
-      ></Button>
-    </form>
-  );
+  return <form action={loginWithOAuth}>{children}</form>;
 }

@@ -1,25 +1,22 @@
 "use client";
 
-import { UUID } from "crypto";
-import { useQuery } from "@supabase-cache-helpers/postgrest-react-query";
-import { useSupabaseClient } from "@/lib/supabase/client";
 import LoadingSpinner from "./LoadingSpinner";
 import JournalGridItem from "./JournalGridItem";
+import { useQuery } from "@tanstack/react-query";
+import { getLoggedDaysById } from "@/lib/server/actions";
 
 interface Props {
-  user_id: UUID;
+  user_id: string;
 }
 
 export function JournalGrid({ user_id }: Props) {
-  const supabase = useSupabaseClient();
-  const { data, isLoading } = useQuery(
-    supabase.from("logged_days").select("mood").eq("user_id", user_id),
-    {} // Put configs here.
-  );
+  const { data, isLoading } = useQuery({
+    queryKey: ["logged_journal_items"],
+    queryFn: () => getLoggedDaysById(user_id),
+  });
 
   return (
     <div>
-      {/* {isLoading && <LoadingSpinner />} */}
       {!isLoading && data && (
         <div className="animate-in flex-1 flex flex-col gap-20 opacity-0 max-w-4xl px-3">
           <div className="flex-1 flex flex-col gap-6">

@@ -2,10 +2,11 @@
 
 import { redirect } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
-import { cn, mapMoodToColour } from "@/lib/utils";
 import { useState } from "react";
+import { cn, mapMoodToColour } from "@/lib/utils";
 import { insertDailyMoodEntry } from "@/lib/server/actions";
 import Button from "./generics/Button";
+import LoadingSpinner from "./LoadingSpinner";
 
 const moods = [1, 2, 3, 4, 5] as const;
 export type Mood = (typeof moods)[number];
@@ -22,10 +23,11 @@ export default function SelectMood({ user_id }: Props) {
     return redirect("/");
   }
 
-  useQuery({
+  const { isLoading } = useQuery({
     queryKey: ["insert_daily_mood_entry"],
     queryFn: () => insertDailyMoodEntry(user_id!, selectedMood!),
     enabled: enabled,
+    staleTime: Infinity,
   });
 
   function setUserMood(mood: Mood) {
@@ -35,20 +37,22 @@ export default function SelectMood({ user_id }: Props) {
   }
 
   function setOpacityLevel(mood: Mood) {
-    if (selectedMood === null || mood === selectedMood) {
-      return "opacity-100";
-    }
-    return "opacity-50";
+    return (
+      selectedMood === null || mood === selectedMood
+        ? "opacity-100"
+        : "opacity-50"
+    ).concat(" transition ease-in-out delay-75");
   }
 
   return (
     <div>
-      {
-        <div>
-          <h1 className="font-bold text-2xl animate-in">
+      {isLoading && <LoadingSpinner />}
+      {!isLoading && (
+        <div className="">
+          <h1 className="font-bold text-2xl animate-in dela">
             How are you feeling?
           </h1>
-          <div className="grid grid-cols-5 py-2 gap-2">
+          <div className="grid grid-cols-5 py-2 gap-2 grid-animate-in">
             {moods.map((mood) => (
               <button
                 onClick={() => setUserMood(mood)}
@@ -62,16 +66,11 @@ export default function SelectMood({ user_id }: Props) {
               />
             ))}
           </div>
-          {selectedMood === 1 && <div>Very bad</div>}
-          {selectedMood === 2 && <div>Bad</div>}
-          {selectedMood === 3 && <div>Meh</div>}
-          {selectedMood === 4 && <div>Ok</div>}
-          {selectedMood === 5 && <div>Great</div>}
           <form action={() => setEnabled(true)}>
             <Button title="Submit" disabled={enabled}></Button>
           </form>
         </div>
-      }
+      )}
     </div>
   );
 }

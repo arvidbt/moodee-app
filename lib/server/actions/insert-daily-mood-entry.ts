@@ -18,6 +18,5 @@ export async function insertDailyMoodEntry(user_id: string, mood: number) {
     ])
     .select();
   revalidatePath("/home");
-  console.log(data);
   return data;
 }

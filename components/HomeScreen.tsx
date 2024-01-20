@@ -2,7 +2,7 @@
 
 import { UUID } from "crypto";
 import { JournalGrid } from "./JournalGrid";
-import { useQuery } from "@tanstack/react-query";
+import { QueryObserver, useQuery } from "@tanstack/react-query";
 import DisplayError from "./DisplayError";
 import SelectMood from "./SelectMood";
 import LoadingSpinner from "./LoadingSpinner";
@@ -34,21 +34,19 @@ export default function HomeScreen() {
     enabled: !!user?.id,
   });
 
+  // https://tanstack.com/query/v4/docs/react/reference/QueryObserver
+
   if (error) {
     return (
       <DisplayError error_message={error.message} error_name={error.name} />
     );
   }
 
-  if (user_id === undefined) {
-    return <div>Could not load user...</div>;
-  }
-
   return (
     <div>
       {isLoading && <LoadingSpinner />}
       {hasUserLoggedAlready(data?.created_at) && user_id ? (
-        <div>{!isLoading && <JournalGrid user_id={user_id as UUID} />}</div>
+        <div>{!isLoading && <JournalGrid user_id={user_id} />}</div>
       ) : (
         <div>{!isLoading && <SelectMood user_id={user_id} />}</div>
       )}
