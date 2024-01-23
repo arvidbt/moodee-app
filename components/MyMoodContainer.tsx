@@ -15,6 +15,7 @@ import Link from "next/link";
 const moods = [1, 2, 3, 4, 5] as const;
 export type Mood = (typeof moods)[number];
 
+export const dynamic = "force-dynamic";
 export default function MyMoodContainer() {
   const [selectedMood, setSelectedMood] = useState<number | null>(null);
   const [enabled, setEnabled] = useState<boolean>(false);
@@ -73,7 +74,7 @@ export default function MyMoodContainer() {
         !loadingLatestUserEntry &&
         insertedUserEntry === undefined &&
         hasUserLoggedAlready(latestUserEntry?.created_at!) && (
-          <div>
+          <div className="flex flex-col gap-2">
             <p>Come back tomorrow to continue your journal!</p>
             <Link href={"/my-journal"}>
               <Button title="Take me to my journal." />

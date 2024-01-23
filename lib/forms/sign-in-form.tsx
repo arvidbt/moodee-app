@@ -2,7 +2,6 @@
 
 import { getURL } from "../utils";
 import { useSupabaseClient } from "../supabase/client";
-
 interface Props {
   children: React.ReactNode;
 }

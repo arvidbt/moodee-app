@@ -6,5 +6,8 @@ export function useGetLatestEntry(user_id: string | undefined) {
     queryKey: ["get_latest_entry", user_id],
     queryFn: () => getLatestEntryByUser(user_id!),
     enabled: !!user_id,
-  }) satisfies UseQueryResult<{ created_at: string } | null, Error>;
+  }) satisfies UseQueryResult<
+    { created_at: string; mood: number } | null,
+    Error
+  >;
 }
