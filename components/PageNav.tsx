@@ -5,8 +5,13 @@ import { usePathname } from "next/navigation";
 import SignInButton from "./SignInButton";
 import SignOutButton from "./SignOutButton";
 import Link from "next/link";
+import Button from "./generics/Button";
 
 export default function PageNav() {
+  // This should be done with useGetAuthenticatedUser, but does not work?
+  const currentUrl = usePathname();
+  const urls = ["/my-mood", "/my-journal", "/my-stats"];
+
   return (
     <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
       <div className="w-full flex justify-between items-center p-3 text-sm">
@@ -15,11 +20,14 @@ export default function PageNav() {
             <span className="inline-block align-middle mr-2">
               <MoodeeIcon width="20" height="20" />
             </span>
-            <Link href={"/my-mood"}>Moodee</Link>
+            <Link href={"/my-mood"}>Moodee </Link>
           </p>
         </div>
-        {usePathname() === "/my-mood" || usePathname() === "/my-journal" ? (
+        {urls.some((e) => e === currentUrl) ? (
           <div className="flex gap-2">
+            <Link href="/my-stats">
+              <Button title="My stats" />
+            </Link>
             <SignOutButton />
           </div>
         ) : (

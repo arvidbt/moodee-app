@@ -19,6 +19,7 @@ export const dynamic = "force-dynamic";
 export default function MyMoodContainer() {
   const [selectedMood, setSelectedMood] = useState<number | null>(null);
   const [enabled, setEnabled] = useState<boolean>(false);
+  const [error, setError] = useState();
 
   const {
     data: authenticatedUser,
@@ -62,20 +63,24 @@ export default function MyMoodContainer() {
   }
 
   // This is a sketchy solution, lol. Should find a better way to do it.
-  if (insertedUserEntry) {
-    return redirect("my-journal");
+  if (insertedUserEntry || hasUserLoggedAlready(latestUserEntry?.created_at!)) {
+    return redirect("/my-journal");
   }
 
   return (
     <div>
       {loadingInsertUserEntry && <LoadingSpinner />}
       {loadingLatestUserEntry && <LoadingSpinner />}
+      {/* This is a fallback. */}
       {!loadingLatestUserEntry &&
         !loadingLatestUserEntry &&
         insertedUserEntry === undefined &&
         hasUserLoggedAlready(latestUserEntry?.created_at!) && (
           <div className="flex flex-col gap-2">
-            <p>Come back tomorrow to continue your journal!</p>
+            <p className={cn("p-4 font-bold")}>
+              You have done your part today, come back tomorrow to continue
+              logging your mood.
+            </p>
             <Link href={"/my-journal"}>
               <Button title="Take me to my journal." />
             </Link>
