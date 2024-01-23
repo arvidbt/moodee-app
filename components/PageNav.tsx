@@ -15,10 +15,10 @@ export default function PageNav() {
             <span className="inline-block align-middle mr-2">
               <MoodeeIcon width="20" height="20" />
             </span>
-            <Link href={"/home"}>Moodee</Link>
+            <Link href={"/my-mood"}>Moodee</Link>
           </p>
         </div>
-        {usePathname() === "/home" ? (
+        {usePathname() === "/my-mood" || usePathname() === "/my-journal" ? (
           <div className="flex gap-2">
             <SignOutButton />
           </div>

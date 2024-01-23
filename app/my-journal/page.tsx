@@ -1,12 +1,14 @@
-import { HomeLandingPage, PageLayout } from "@/components";
-import { getAuthenticatedUser } from "@/lib/server/actions/get-authenticated-user";
+import { MyJournalContainer, PageLayout } from "@/components";
+import JournalGridItem from "@/components/JournalGridItem";
+import { getAuthenticatedUser } from "@/lib/server/actions";
+import { useGetAuthenticatedUser, useGetLoggedDays } from "@/lib/server/hooks";
 import {
   dehydrate,
   HydrationBoundary,
   QueryClient,
 } from "@tanstack/react-query";
 
-export default async function Home() {
+export default async function MyJournal() {
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery({
     queryKey: ["authenticated_user"],
@@ -19,7 +21,7 @@ export default async function Home() {
         <div className="flex-1 flex flex-col gap-2">
           <div className="flex-1 flex flex-col justify-center items-center animate-in">
             <HydrationBoundary state={dehydrate(queryClient)}>
-              <HomeLandingPage />
+              <MyJournalContainer />
             </HydrationBoundary>
           </div>
         </div>

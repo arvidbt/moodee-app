@@ -5,10 +5,12 @@ import PageNav from "./PageNav";
 import QueryProvider from "./QueryProvider";
 import Button from "./generics/Button";
 import DisplayError from "./DisplayError";
-import HomeLandingPage from "./HomeLandingPage";
+import MyMoodContainer from "./MyMoodContainer";
+import MyJournalContainer from "./MyJournalContainer";
 export {
   Button,
-  HomeLandingPage,
+  MyMoodContainer,
+  MyJournalContainer,
   MoodeeIcon,
   PageFooter,
   PageLayout,
