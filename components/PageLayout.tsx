@@ -8,9 +8,7 @@ interface Props {
 export default function PageLayout({ children }: Props) {
   return (
     <div className="flex-1 w-full flex flex-col gap-5 items-center">
-      <PageNav />
       {children}
-      <PageFooter />
     </div>
   );
 }
