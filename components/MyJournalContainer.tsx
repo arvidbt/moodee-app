@@ -15,6 +15,8 @@ export default function MyJournalContainer() {
     error: userLoggedDaysError,
   } = useGetLoggedDays(authenticatedUser?.id);
 
+  console.log(userLoggedDays);
+
   return (
     <div>
       {!loadingUserLoggedDays && userLoggedDays && (

@@ -40,7 +40,7 @@ export default function Index() {
               Keep a journal of your daily{" "}
               <span className="gradient-text">mood</span> with Moodee.
             </h1>
-            <p className="font-semibold sm:text-xl md:text-xl lg:text-2xl">
+            <p className="text-center font-semibold sm:text-xl md:text-xl lg:text-2xl">
               Track your mood, boost self-awareness, and identify mental
               well-being triggers with ease.{" "}
               <span className="font-black">Moodee</span>: A seamless,

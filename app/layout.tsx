@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
 import "./globals.css";
 import { PageFooter, PageNav, QueryProvider } from "@/components";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -20,13 +21,20 @@ export default function RootLayout({
 }) {
   return (
     <QueryProvider>
-      <html lang="en" className={GeistSans.className}>
+      <html lang="en" className={GeistSans.className} suppressHydrationWarning>
         <body className="bg-background text-foreground">
-          <main className="min-h-screen flex flex-col items-center">
-            <PageNav />
-            {children}
-            <PageFooter />
-          </main>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <main className="min-h-screen flex flex-col items-center">
+              <PageNav />
+              {children}
+              <PageFooter />
+            </main>
+          </ThemeProvider>
         </body>
       </html>
     </QueryProvider>

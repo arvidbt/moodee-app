@@ -1,8 +1,11 @@
+"use client";
+
 import MoodeeIcon from "./ModeeIcon";
+import { ModeToggle } from "./ThemeModeToggle";
 
 export default function PageFooter() {
   return (
-    <footer className="w-full flex justify-center border-b border-b-foreground/10 h-16 sticky top-[100vh]">
+    <footer className="w-full flex justify-center h-16 sticky top-[100vh]">
       <div className="w-full flex justify-between items-center p-3 text-sm">
         <div className="flex items-center justify-center">
           <p className="text-sm">
@@ -12,6 +15,7 @@ export default function PageFooter() {
             © 2024 <span className="text-xs opacity-40"> beta</span>
           </p>
         </div>
+        <ModeToggle />
       </div>
     </footer>
   );
