@@ -6,6 +6,7 @@ import SignInButton from "./SignInButton";
 import SignOutButton from "./SignOutButton";
 import Link from "next/link";
 import Button from "./generics/Button";
+import { BarChartIcon, CalendarIcon } from "@radix-ui/react-icons";
 
 export default function PageNav() {
   // This should be done with useGetAuthenticatedUser, but does not work?
@@ -27,7 +28,14 @@ export default function PageNav() {
         {urls.some((e) => e === currentUrl) ? (
           <div className="flex gap-2">
             <Link href="/my-stats">
-              <Button title="My stats" />
+              <Button title="My journal" urlName="/my-journal">
+                <CalendarIcon />
+              </Button>
+            </Link>
+            <Link href="/my-stats">
+              <Button title="My stats" urlName="/my-stats">
+                <BarChartIcon />
+              </Button>
             </Link>
             <SignOutButton />
           </div>

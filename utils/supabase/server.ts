@@ -1,6 +1,6 @@
+import { env } from "@/lib";
 import { createServerClient, type CookieOptions } from "@supabase/ssr";
 import { cookies } from "next/headers";
-import { env } from "@/lib/utils/env.mjs";
 
 export const createClient = (cookieStore: ReturnType<typeof cookies>) => {
   return createServerClient(

@@ -1,6 +1,7 @@
 "use client";
 import JournalGridItem from "@/components/JournalGridItem";
 import { useGetAuthenticatedUser, useGetLoggedDays } from "@/lib/server/hooks";
+import { redirect } from "next/navigation";
 
 export default function MyJournalContainer() {
   const {
@@ -15,7 +16,9 @@ export default function MyJournalContainer() {
     error: userLoggedDaysError,
   } = useGetLoggedDays(authenticatedUser?.id);
 
-  console.log(userLoggedDays);
+  if (!authenticatedUser) {
+    return redirect("/");
+  }
 
   return (
     <div>

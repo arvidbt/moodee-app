@@ -1,8 +1,8 @@
 "use client";
 
 import LoadingSpinner from "./LoadingSpinner";
-import { useEffect, useState } from "react";
-import { cn, mapMoodToColour } from "@/lib/utils";
+import { useState } from "react";
+import { cn } from "@/lib/utils";
 import { Button } from ".";
 import {
   useGetAuthenticatedUser,
@@ -11,6 +11,7 @@ import {
 } from "@/lib/server/hooks";
 import { redirect } from "next/navigation";
 import Link from "next/link";
+import { mapMoodToColour } from "@/lib/utils";
 
 const moods = [1, 2, 3, 4, 5] as const;
 export type Mood = (typeof moods)[number];
@@ -38,6 +39,11 @@ export default function MyMoodContainer() {
     isLoading: loadingInsertUserEntry,
     error: insertUserEntryError,
   } = useInsertDailyEntry(authenticatedUser?.id, selectedMood, enabled);
+
+  // This stuff needs to be handled by middleware.
+  if (!authenticatedUser) {
+    return redirect("/");
+  }
 
   function hasUserLoggedAlready(created_at: string) {
     const createdAtDate = new Date(created_at);

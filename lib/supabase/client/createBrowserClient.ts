@@ -1,5 +1,5 @@
+import { env } from "@/lib";
 import { createBrowserClient } from "@supabase/ssr";
-import { env } from "@/lib/utils/env.mjs";
 
 export function useSupabaseClient() {
   return createBrowserClient(

@@ -1,12 +1,19 @@
 import { useTheme } from "next-themes";
+import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
 
 export function ModeToggle() {
-  const { setTheme } = useTheme();
-
+  const { setTheme, resolvedTheme } = useTheme();
   return (
     <div>
-      <button onClick={() => setTheme("dark")}>DARK</button>
-      <button onClick={() => setTheme("light")}>LIGHT</button>
+      {resolvedTheme === "dark" ? (
+        <button onClick={() => setTheme("light")}>
+          <SunIcon />
+        </button>
+      ) : (
+        <button onClick={() => setTheme("dark")}>
+          <MoonIcon />
+        </button>
+      )}
     </div>
   );
 }
