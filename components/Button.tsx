@@ -2,7 +2,6 @@
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 import { MouseEventHandler } from "react";
-
 interface ButtonProps {
   title: string;
   type?: "submit" | "reset" | "button" | undefined;
@@ -37,14 +36,16 @@ export default function Button({
       disabled={disabled ? true : false}
       onClick={onClick}
       className={cn(
-        "py-2 px-3 rounded-md no-underline bg-btn-background hover:bg-btn-background-hover font-semibold w-full select-none",
+        "py-2 px-2 rounded-md no-underline font-semibold w-full select-none text-sm opacity-90 hover:opacity-100",
         isActive() &&
-          "underline underline-offset-4 decoration-app-orange decoration-2",
+          "underline underline-offset-4 decoration-app-orange decoration-2 opacity-100",
         customColour && customColour && customStyling && customStyling
       )}
     >
-      {title}
-      {children}
+      <div className="flex items-center justify-center gap-1">
+        {title}
+        {children}
+      </div>
     </button>
   );
 }

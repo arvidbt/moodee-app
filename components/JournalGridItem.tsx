@@ -9,7 +9,7 @@ export default function JournalGridItem({ mood, index }: MoodItemProps) {
   return (
     <div
       className={cn(
-        "p-3 h-10 opacity-1 grid-animate-in select-none rounded-sm bg-btn-background relative", // Add relative class
+        "p-3 h-8 w-8 opacity-1 grid-animate-in select-none rounded-sm bg-btn-background relative", // Add relative class
         mood && mapMoodToColour(mood)
       )}
       style={{

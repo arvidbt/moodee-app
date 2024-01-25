@@ -7,12 +7,12 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
-        btn: {
-          background: "hsl(var(--btn-background))",
-          "background-hover": "hsl(var(--btn-background-hover))",
-        },
+        // background: "hsl(var(--background))",
+        // foreground: "hsl(var(--foreground))",
+        // btn: {
+        //   background: "hsl(var(--btn-background))",
+        //   "background-hover": "hsl(var(--btn-background-hover))",
+        // },
         app: {
           green: "#78D980",
           "dark-green": "#038C65",

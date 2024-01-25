@@ -1,9 +1,5 @@
-import { MoodeeIcon, PageLayout } from "@/components";
-import { useSupabaseServer } from "@/lib/supabase/server";
+import { PageLayout } from "@/components";
 import { cn, getAnimationDelay } from "@/lib/utils";
-import Link from "next/link";
-import { redirect } from "next/navigation";
-import { use } from "react";
 
 export default function Index() {
   const sizeOfGrid = 7;
@@ -40,27 +36,27 @@ export default function Index() {
       <div className="m-auto flex flex-col gap-10">
         <div className="animate-in flex flex-col opacity-0 max-w-4xl px-3">
           <div className="flex-1 flex flex-col gap-6 p-2">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black">
+            <h1 className="text-center text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black">
               Keep a journal of your daily{" "}
               <span className="gradient-text">mood</span> with Moodee.
             </h1>
-            <p className="font-semibold sm:text-xl md:text-xl lg:text-2xl">
+            <p className="text-center font-semibold sm:text-xl md:text-xl lg:text-2xl">
               Track your mood, boost self-awareness, and identify mental
-              well-being triggers with ease. Moodee: A seamless, straightforward
-              approach to mood tracking, built with simplicity in focus. Sign
-              in, express, log out.
+              well-being triggers with ease.{" "}
+              <span className="font-black">Moodee</span>: A seamless,
+              straightforward approach to mood tracking, built with simplicity
+              in focus. Sign in, express, log out.
             </p>
             <div className="grid grid-cols-7 gap-2">
               {grid.map((_, index) => (
                 <div
                   key={index}
                   className={cn(
-                    "p-3 h-12 opacity-0 grid-animate-in select-none rounded-sm",
+                    "p-3 h-12  grid-animate-in select-none rounded-sm",
                     getRandomColor()
                   )}
                   style={{
                     animationDelay: `${getAnimationDelay(index)}s`,
-                    opacity: getOpacityLevel(index),
                   }}
                 >
                   {""}

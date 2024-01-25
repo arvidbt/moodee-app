@@ -1,8 +1,8 @@
 "use client";
 
 import LoadingSpinner from "./LoadingSpinner";
-import { useEffect, useState } from "react";
-import { cn, mapMoodToColour } from "@/lib/utils";
+import { useState } from "react";
+import { cn } from "@/lib/utils";
 import { Button } from ".";
 import {
   useGetAuthenticatedUser,
@@ -11,13 +11,16 @@ import {
 } from "@/lib/server/hooks";
 import { redirect } from "next/navigation";
 import Link from "next/link";
+import { mapMoodToColour } from "@/lib/utils";
 
 const moods = [1, 2, 3, 4, 5] as const;
 export type Mood = (typeof moods)[number];
 
+export const dynamic = "force-dynamic";
 export default function MyMoodContainer() {
   const [selectedMood, setSelectedMood] = useState<number | null>(null);
   const [enabled, setEnabled] = useState<boolean>(false);
+  const [error, setError] = useState();
 
   const {
     data: authenticatedUser,
@@ -36,6 +39,11 @@ export default function MyMoodContainer() {
     isLoading: loadingInsertUserEntry,
     error: insertUserEntryError,
   } = useInsertDailyEntry(authenticatedUser?.id, selectedMood, enabled);
+
+  // This stuff needs to be handled by middleware.
+  if (!authenticatedUser) {
+    return redirect("/");
+  }
 
   function hasUserLoggedAlready(created_at: string) {
     const createdAtDate = new Date(created_at);
@@ -61,20 +69,24 @@ export default function MyMoodContainer() {
   }
 
   // This is a sketchy solution, lol. Should find a better way to do it.
-  if (insertedUserEntry) {
-    return redirect("my-journal");
+  if (insertedUserEntry || hasUserLoggedAlready(latestUserEntry?.created_at!)) {
+    return redirect("/my-journal");
   }
 
   return (
     <div>
       {loadingInsertUserEntry && <LoadingSpinner />}
       {loadingLatestUserEntry && <LoadingSpinner />}
+      {/* This is a fallback. */}
       {!loadingLatestUserEntry &&
         !loadingLatestUserEntry &&
         insertedUserEntry === undefined &&
         hasUserLoggedAlready(latestUserEntry?.created_at!) && (
-          <div>
-            <p>Come back tomorrow to continue your journal!</p>
+          <div className="flex flex-col gap-2">
+            <p className={cn("p-4 font-bold")}>
+              You have done your part today, come back tomorrow to continue
+              logging your mood.
+            </p>
             <Link href={"/my-journal"}>
               <Button title="Take me to my journal." />
             </Link>

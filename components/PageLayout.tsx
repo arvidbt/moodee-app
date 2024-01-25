@@ -1,5 +1,4 @@
 import { ReactNode } from "react";
-import { PageFooter, PageNav } from ".";
 
 interface Props {
   children: ReactNode;
