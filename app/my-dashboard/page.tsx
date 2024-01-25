@@ -7,7 +7,7 @@ import {
   QueryClient,
 } from "@tanstack/react-query";
 
-export default async function MyJournal() {
+export default async function MyDashboard() {
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery({
     queryKey: ["authenticated_user"],

@@ -1,18 +1,10 @@
 "use client";
 
 import MoodeeIcon from "./ModeeIcon";
-import { usePathname } from "next/navigation";
-import SignInButton from "./SignInButton";
-import SignOutButton from "./SignOutButton";
 import Link from "next/link";
-import Button from "./generics/Button";
-import { BarChartIcon, CalendarIcon } from "@radix-ui/react-icons";
+import NavBarMenu from "./NavBarMenu";
 
 export default function PageNav() {
-  // This should be done with useGetAuthenticatedUser, but does not work?
-  const currentUrl = usePathname();
-  const urls = ["/my-mood", "/my-journal", "/my-stats"];
-
   return (
     <nav className="w-full flex justify-center h-16">
       <div className="w-full flex justify-between items-center p-3 text-sm">
@@ -25,25 +17,7 @@ export default function PageNav() {
             <Link href={"/my-mood"}>Moodee </Link>
           </p>
         </div>
-        {urls.some((e) => e === currentUrl) ? (
-          <div className="flex gap-2">
-            <Link href="/my-stats">
-              <Button title="My journal" urlName="/my-journal">
-                <CalendarIcon />
-              </Button>
-            </Link>
-            <Link href="/my-stats">
-              <Button title="My stats" urlName="/my-stats">
-                <BarChartIcon />
-              </Button>
-            </Link>
-            <SignOutButton />
-          </div>
-        ) : (
-          <div className="flex gap-2">
-            <SignInButton />
-          </div>
-        )}
+        <NavBarMenu />
       </div>
     </nav>
   );

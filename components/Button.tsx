@@ -36,9 +36,9 @@ export default function Button({
       disabled={disabled ? true : false}
       onClick={onClick}
       className={cn(
-        "py-2 px-2 rounded-md no-underline font-semibold w-full select-none text-sm",
+        "py-2 px-2 rounded-md no-underline font-semibold w-full select-none text-sm opacity-90 hover:opacity-100",
         isActive() &&
-          "underline underline-offset-4 decoration-app-orange decoration-2",
+          "underline underline-offset-4 decoration-app-orange decoration-2 opacity-100",
         customColour && customColour && customStyling && customStyling
       )}
     >

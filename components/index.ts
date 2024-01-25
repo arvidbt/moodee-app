@@ -3,7 +3,7 @@ import PageFooter from "./PageFooter";
 import PageLayout from "./PageLayout";
 import PageNav from "./PageNav";
 import QueryProvider from "./QueryProvider";
-import Button from "./generics/Button";
+import Button from "./Button";
 import DisplayError from "./DisplayError";
 import MyMoodContainer from "./MyMoodContainer";
 import MyJournalContainer from "./MyJournalContainer";
