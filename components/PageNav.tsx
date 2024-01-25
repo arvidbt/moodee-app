@@ -6,7 +6,7 @@ import NavBarMenu from "./NavBarMenu";
 
 export default function PageNav() {
   return (
-    <nav className="w-full flex justify-center h-16">
+    <nav className="w-full flex justify-center h-20">
       <div className="w-full flex justify-between items-center p-3 text-sm">
         <div className="flex items-center justify-center">
           <p className="font-black select-none z-50 text-lg ">

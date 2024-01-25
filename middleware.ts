@@ -57,17 +57,18 @@ export async function middleware(request: NextRequest) {
     }
   );
 
+  const authRequiredUrls = ["/my-mood", "/my-journal", "my-dashboard"];
+
   const { data } = await supabase.auth.getUser();
-  if (data.user === null && request.url.includes("/home")) {
+  if (
+    data.user === null &&
+    authRequiredUrls.some((e) => request.url.includes(e))
+  ) {
     return NextResponse.redirect(new URL("/", request.url));
   }
 
-  if (data.user !== null && request.url === defaultUrl) {
-    return NextResponse.redirect(new URL("/home", request.url));
-  }
-
-  if (data.user !== null && request.url === `${defaultUrl}/login`) {
-    return NextResponse.redirect(new URL("/home", request.url));
+  if (data.user !== null && request.url === `${defaultUrl}/`) {
+    return NextResponse.redirect(new URL("/my-journal", request.url));
   }
 
   return response;

@@ -5,7 +5,7 @@ import { ModeToggle } from "./ThemeModeToggle";
 
 export default function PageFooter() {
   return (
-    <footer className="w-full flex justify-center h-16 sticky top-[100vh]">
+    <footer className="w-full flex justify-center h-20 sticky top-[100vh]">
       <div className="w-full flex justify-between items-center p-3 text-sm">
         <div className="flex items-center justify-center">
           <p className="text-sm">
