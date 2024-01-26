@@ -19,9 +19,9 @@ export default function NavBarMenu() {
           <NavBarItem title="My Journal" url="/my-journal">
             <CalendarIcon />
           </NavBarItem>
-          <NavBarItem title="My Dashboard" url="/my-dashboard">
+          {/* <NavBarItem title="My Dashboard" url="/my-dashboard">
             <CalendarIcon />
-          </NavBarItem>
+          </NavBarItem> */}
           <SignOutButton />
         </div>
       ) : (

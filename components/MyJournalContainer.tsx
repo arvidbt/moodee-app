@@ -28,7 +28,7 @@ export default function MyJournalContainer() {
             <div className="flex-1 flex flex-col justify-center items-center animate-in p-2">
               <h1 className="font-bold text-xl mb-2">
                 Your mood the last{" "}
-                <span className="underline underline-offset-4 decoration-app-dark-green decoration-2 ">
+                <span className="underline underline-offset-4 dark:decoration-app-dark-green decoration-app-orange decoration-2 ">
                   {userLoggedDays.length} days.
                 </span>
               </h1>

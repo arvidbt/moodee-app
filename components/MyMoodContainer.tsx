@@ -118,12 +118,7 @@ export default function MyMoodContainer() {
                         />
                       ))}
                     </div>
-                    <div className="flex flex-col gap-2">
-                      <Button
-                        title="Make a note"
-                        disabled={enabled}
-                        onClick={() => console.log("Hej")}
-                      />
+                    <div className="flex flex-col gap-2 bg-transparent">
                       <form action={() => setEnabled(true)}>
                         <Button title="Submit" disabled={enabled} />
                       </form>

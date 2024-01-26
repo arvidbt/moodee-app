@@ -21,9 +21,9 @@ export default function NavBarItem({ title, url, children }: NavProps) {
       <Link
         href={url}
         className={cn(
-          "py-2 px-2 rounded-md no-underline font-semibold w-full select-none text-sm opacity-90 hover:opacity-100",
+          "py-2 px-2 rounded-md no-underline font-semibold w-full select-none text-sm",
           isActive() &&
-            "underline underline-offset-4 decoration-app-orange decoration-2 opacity-100"
+            "underline underline-offset-4 decoration-app-orange dark:decoration-app-dark-green decoration-2"
         )}
       >
         <div className="flex items-center justify-center gap-1">
