@@ -6,6 +6,7 @@ import Button from "./Button";
 import { CalendarIcon, DashboardIcon } from "@radix-ui/react-icons";
 import SignInButton from "./SignInButton";
 import SignOutButton from "./SignOutButton";
+import NavBarItem from "./NavItem";
 
 export default function NavBarMenu() {
   const currentUrl = usePathname();
@@ -15,16 +16,12 @@ export default function NavBarMenu() {
     <div>
       {urls.some((e) => e === currentUrl) ? (
         <div className="flex gap-2">
-          <Link href="/my-journal">
-            <Button title="My journal" urlName="/my-journal">
-              <CalendarIcon />
-            </Button>
-          </Link>
-          <Link href="/my-dashboard">
-            <Button title="My dashboard" urlName="/my-dashboard">
-              <DashboardIcon />
-            </Button>
-          </Link>
+          <NavBarItem title="My Journal" url="/my-journal">
+            <CalendarIcon />
+          </NavBarItem>
+          <NavBarItem title="My Dashboard" url="/my-dashboard">
+            <CalendarIcon />
+          </NavBarItem>
           <SignOutButton />
         </div>
       ) : (
