@@ -10,15 +10,15 @@ export default function MyJournalContainer() {
     error: authUserError,
   } = useGetAuthenticatedUser();
 
+  if (!authenticatedUser) {
+    return redirect("/");
+  }
+
   const {
     data: userLoggedDays,
     isLoading: loadingUserLoggedDays,
     error: userLoggedDaysError,
   } = useGetLoggedDays(authenticatedUser?.id);
-
-  if (!authenticatedUser) {
-    return redirect("/");
-  }
 
   return (
     <div>
@@ -32,7 +32,7 @@ export default function MyJournalContainer() {
                   {userLoggedDays.length} days.
                 </span>
               </h1>
-              <div className="grid grid-cols-7 gap-2 rounded-sm py-2 mb-2 grid-animate-in">
+              <div className="grid grid-cols-12 gap-1 rounded-sm py-2 mb-2 grid-animate-in">
                 {userLoggedDays.map((item, index) => (
                   <JournalGridItem index={index} key={index} mood={item.mood} />
                 ))}
